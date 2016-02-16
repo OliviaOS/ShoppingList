@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+	<title>Shopping List</title>
+</head>
+<body>
+<div class="container-fluid">
+	<h1><mark>Shopping</mark> List App</h1>
+	<table class="table table-striped" ng-controller="mainCtrl">
+		<thead><tr>
+			<th>Type</th>
+			<th>Name</th>
+			<th>Brand</th>
+			<th>Price($)</th>
+			<th>Comment</th>
+			<th>Act</th><th></th><th></th></tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<input type="text" list="typeList" ng-model="itemInput.itemType"/>
+					   <datalist id="typeList">
+					   	<option ng-repeat="type in itemTypeList" value="{{type}}">{{type}}</option>
+					   </datalist>
+				</td>
+				<td><input type="text" ng-model="itemInput.itemName"/></td>
+				<td><input type="text" ng-model="itemInput.itemBrand"/></td>
+				<td><input type="text" ng-model="itemInput.itemPrice"/></td>
+				<td><input type="text" ng-model="itemInput.itemComment"/></td>
+				<td><button type="button" class="btn btn-primary" ng-click="addItem()" ng-disabled="addBtnOff"><span class="glyphicon glyphicon-plus"></span></button></td>
+				<td><button type="button" class="btn btn-info" ng-click="updateItem(itemInput._id)" ng-disabled="updateBtnOff"><span class="glyphicon glyphicon-ok"></span></button></td>
+				<td><button type="button" class="btn btn-default" ng-click="cancel()" ng-disabled="cancelBtnOff">Clear</button></td>
+			</tr>
+			<tr ng-repeat="item in shoppingList">
+				<td>{{item.itemType}}</td>
+				<td>{{item.itemName}}</td>
+				<td>{{item.itemBrand}}</td>
+				<td>{{item.itemPrice}}</td>
+				<td>{{item.itemComment}}</td>
+				<td><button type="button" class="btn btn-warning" ng-click="editItem(item._id)"><span class="glyphicon glyphicon-pencil"></span></button></td>
+				<td><button type="button" class="btn btn-danger" ng-click="removeItem(item._id)"><span class="glyphicon glyphicon-remove"></span></button></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+	
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
